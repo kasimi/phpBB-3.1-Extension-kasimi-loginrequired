@@ -1,0 +1,29 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_LOGINREQUIRED_TITLE}</h1>
+
+<form id="acp_board" method="post" action="{U_ACTION}">
+	<fieldset>
+		<legend>{L_LOGINREQUIRED_TITLE} v{LOGINREQUIRED_VERSION}</legend>
+		<dl>
+			<dt><label for="loginrequired_enabled">{L_LOGINREQUIRED_ENABLED}{L_COLON}</label><br /><span>{L_LOGINREQUIRED_ENABLED_EXP}</span></dt>
+			<dd>
+				<label><input type="radio" class="radio" name="loginrequired_enabled" value="1" id="loginrequired_enabled"<!-- IF LOGINREQUIRED_ENABLED --> checked="checked"<!-- ENDIF -->/> {L_YES}</label>
+				<label><input type="radio" class="radio" name="loginrequired_enabled" value="0"<!-- IF not LOGINREQUIRED_ENABLED --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="loginrequired_exceptions">{L_LOGINREQUIRED_EXCEPTIONS}{L_COLON}</label><br /><span>{L_LOGINREQUIRED_EXCEPTIONS_EXP}</span></dt>
+			<dd><textarea id="loginrequired_exceptions" name="loginrequired_exceptions" rows="20" cols="20" />{LOGINREQUIRED_EXCEPTIONS}</textarea></dd>
+		</dl>
+	</fieldset>
+	<fieldset>
+		<legend>{L_ACP_SUBMIT_CHANGES}</legend>
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		</p>
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+<!-- INCLUDE overall_footer.html -->
