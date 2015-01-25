@@ -21,9 +21,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class listener implements EventSubscriberInterface
 {
 	/* @var string */
-	protected $root_path;
-
-	/* @var \phpbb\user */
 	protected $php_ext;
 
 	/* @var \phpbb\user */
@@ -32,20 +29,26 @@ class listener implements EventSubscriberInterface
 	/* @var \phpbb\config\config */
 	protected $config;
 
+	/* @var \phpbb\request\request_interface */
+	protected $request;
+
+	/* @var bool */
+	protected $is_first_user_setup = true;
+
 	/**
  	 * Constructor
 	 *
-	 * @param string								$root_path
 	 * @param string								$php_ext
 	 * @param \phpbb\user							$user
 	 * @param \phpbb\config\config					$config
+	 * @param \phpbb\request\request_interface		$request
 	 */
-	public function __construct($root_path, $php_ext, \phpbb\user $user, \phpbb\config\config $config)
+	public function __construct($php_ext, \phpbb\user $user, \phpbb\config\config $config, \phpbb\request\request_interface $request)
 	{
-		$this->root_path = $root_path;
 		$this->php_ext = $php_ext;
 		$this->user = $user;
 		$this->config = $config;
+		$this->request = $request;
 	}
 
 	/**
@@ -63,7 +66,7 @@ class listener implements EventSubscriberInterface
 	 */
 	public function login_required($event)
 	{
-		if ($this->user->data['user_id'] == ANONYMOUS && $this->config['kasimi.loginrequired.enabled'] == 1)
+		if ($this->is_first_user_setup && $this->user->data['user_id'] == ANONYMOUS && $this->config['kasimi.loginrequired.enabled'] == 1)
 		{
 			$page = $this->user->page['page'];
 			// Remove query string
@@ -74,8 +77,10 @@ class listener implements EventSubscriberInterface
 			// If the user is not browsing any of the whitelisted pages, we redirect to login page
 			if (!$this->is_exception($page))
 			{
-				// We can't use login_box() here since the user's language hasn't been set up yet
-				redirect(sprintf('%sucp.%s?mode=login', $this->root_path, $this->php_ext));
+				// login_box() calls $user->setup() and therefore this method again,
+				// let's make sure we don't handle the next call.
+				$this->is_first_user_setup = false;
+				login_box();
 			}
 		}
 	}
@@ -85,13 +90,13 @@ class listener implements EventSubscriberInterface
 	 */
 	protected function is_exception($page)
 	{
-		if ($page == 'ucp.' . $this->php_ext)
+		if ($page === 'ucp.' . $this->php_ext)
 		{
 			return true;
 		}
 		foreach (explode("\n", $this->config['kasimi.loginrequired.exceptions']) as $exception)
 		{
-			if (strlen($exception) && $page == $exception)
+			if (strlen($exception) && $page === $exception)
 			{
 				return true;
 			}

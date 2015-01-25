@@ -2,9 +2,9 @@ services:
     kasimi.loginrequired.listener:
         class: kasimi\loginrequired\event\listener
         arguments:
-            - %core.root_path%
             - %core.php_ext%
             - @user
             - @config
+            - @request
         tags:
             - { name: event.listener }
