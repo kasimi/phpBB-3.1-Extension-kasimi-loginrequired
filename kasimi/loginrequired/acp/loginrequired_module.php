@@ -10,14 +10,6 @@
 
 namespace kasimi\loginrequired\acp;
 
-/**
- * @ignore
- */
-if (!defined('IN_PHPBB'))
-{
-	exit;
-}
-
 class loginrequired_module
 {
 	public $u_action;
@@ -42,7 +34,7 @@ class loginrequired_module
 			$loginrequired_enabled = $request->variable('loginrequired_enabled', 0);
 			$config->set('kasimi.loginrequired.enabled', $loginrequired_enabled);
 
-			$loginrequired_exceptions = $request->variable('loginrequired_exceptions', '');
+			$loginrequired_exceptions = $request->variable('loginrequired_exceptions', '', true);
 			$config->set('kasimi.loginrequired.exceptions', $loginrequired_exceptions);
 
 			global $phpbb_log;

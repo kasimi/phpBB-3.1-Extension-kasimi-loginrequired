@@ -10,14 +10,6 @@
 
 namespace kasimi\loginrequired\acp;
 
-/**
- * @ignore
- */
-if (!defined('IN_PHPBB'))
-{
-    exit;
-}
-
 class loginrequired_info
 {
 	function module()

@@ -10,19 +10,10 @@
 
 namespace kasimi\loginrequired\event;
 
-/**
- * @ignore
- */
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-/**
- * Event listener
- */
 class listener implements EventSubscriberInterface
 {
-	/* @var string */
-	protected $php_ext;
-
 	/* @var \phpbb\user */
 	protected $user;
 
@@ -32,27 +23,35 @@ class listener implements EventSubscriberInterface
 	/* @var \phpbb\request\request_interface */
 	protected $request;
 
-	/* @var bool */
+	/* @var string */
+	protected $php_ext;
+
+	/* @var boolean */
 	protected $is_first_user_setup = true;
 
 	/**
  	 * Constructor
 	 *
-	 * @param string								$php_ext
 	 * @param \phpbb\user							$user
 	 * @param \phpbb\config\config					$config
 	 * @param \phpbb\request\request_interface		$request
+	 * @param string								$php_ext
 	 */
-	public function __construct($php_ext, \phpbb\user $user, \phpbb\config\config $config, \phpbb\request\request_interface $request)
+	public function __construct(
+		\phpbb\user $user,
+		\phpbb\config\config $config,
+		\phpbb\request\request_interface $request,
+		$php_ext
+	)
 	{
-		$this->php_ext = $php_ext;
-		$this->user = $user;
-		$this->config = $config;
-		$this->request = $request;
+		$this->user		= $user;
+		$this->config	= $config;
+		$this->request	= $request;
+		$this->php_ext	= $php_ext;
 	}
 
 	/**
-	 * Register event
+	 * Register hooks
 	 */
 	static public function getSubscribedEvents()
 	{
@@ -69,11 +68,13 @@ class listener implements EventSubscriberInterface
 		if ($this->is_first_user_setup && $this->user->data['user_id'] == ANONYMOUS && $this->config['kasimi.loginrequired.enabled'] == 1)
 		{
 			$page = $this->user->page['page'];
+
 			// Remove query string
 			if (strlen($this->user->page['query_string']))
 			{
 				$page = substr($page, 0, -(strlen($this->user->page['query_string']) + 1));
 			}
+
 			// If the user is not browsing any of the whitelisted pages, we redirect to login page
 			if (!$this->is_exception($page))
 			{
@@ -94,6 +95,7 @@ class listener implements EventSubscriberInterface
 		{
 			return true;
 		}
+
 		foreach (explode("\n", $this->config['kasimi.loginrequired.exceptions']) as $exception)
 		{
 			if (strlen($exception) && $page === $exception)
@@ -101,6 +103,7 @@ class listener implements EventSubscriberInterface
 				return true;
 			}
 		}
+
 		return false;
 	}
 }
