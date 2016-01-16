@@ -23,7 +23,7 @@ $lang = array_merge($lang, array(
 	'LOGINREQUIRED_CONFIG'				=> 'Configurazione',
 	'LOGINREQUIRED_CONFIG_UPDATED'		=> 'Configurazione <strong>Login Obbligatorio</strong> aggiornata',
 	'LOGINREQUIRED_ENABLED'				=> 'Abilita estensione',
-	'LOGINREQUIRED_ENABLED_EXP'			=> 'Abilitare o disabilitare l\'obbligo per gli utenti ad effettuare il login.',
+	'LOGINREQUIRED_ENABLED_EXP'			=> 'Abilitare o disabilitare l’obbligo per gli utenti ad effettuare il login.',
 	'LOGINREQUIRED_EXCEPTIONS'			=> 'Eccezioni',
-	'LOGINREQUIRED_EXCEPTIONS_EXP'		=> 'Per impostazione predefinita, agli utenti è richiesto il login per accedere a tutte le pagine. Per autorizzare l\'accesso a pagine specifiche senza necessità di login, elencarle qui, una per ogni riga. Ad esempio, per consentire agli ospiti di accedere: <ul><li style="font-size:0.95em">alla pagina delle FAQ, aggiungere "faq.php" (senza virgolette) alla lista;</li><li style="font-size:0.95em">al percorso di una estensione /coolextension, aggiungere "app.php/coolextension" (senza virgolette) alla lista;</li><li style="font-size:0.95em">ad una pagina personalizzata /custom/page.php, aggiungere "custom/page.php" (senza virgolette) alla lista.</li></ul>',
+	'LOGINREQUIRED_EXCEPTIONS_EXP'		=> 'Per impostazione predefinita, agli utenti è richiesto il login per accedere a tutte le pagine. Per autorizzare l’accesso a pagine specifiche senza necessità di login, elencarle qui, una per ogni riga. Ad esempio, per consentire agli ospiti di accedere: <ul><li style="font-size:0.95em">alla pagina delle FAQ, aggiungere "faq.php" (senza virgolette) alla lista;</li><li style="font-size:0.95em">al percorso di una estensione /coolextension, aggiungere "app.php/coolextension" (senza virgolette) alla lista;</li><li style="font-size:0.95em">ad una pagina personalizzata /custom/page.php, aggiungere "custom/page.php" (senza virgolette) alla lista.</li></ul>',
 ));
