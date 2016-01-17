@@ -81,6 +81,11 @@ class listener implements EventSubscriberInterface
 				// login_box() calls $user->setup() and therefore this method again,
 				// let's make sure we don't handle the next call.
 				$this->is_first_user_setup = false;
+
+				// We need to force login_box() to re-initialize the $user object
+				// because an extension might have added its language keys already.
+				$this->user->lang = array();
+
 				login_box();
 			}
 		}
