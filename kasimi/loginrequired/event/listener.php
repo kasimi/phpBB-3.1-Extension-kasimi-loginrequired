@@ -65,14 +65,14 @@ class listener implements EventSubscriberInterface
 	 */
 	public function login_required($event)
 	{
-		if ($this->is_first_user_setup && $this->user->data['user_id'] == ANONYMOUS && $this->config['kasimi.loginrequired.enabled'] == 1)
+		if ($this->is_first_user_setup && $this->user->data['user_id'] == ANONYMOUS && $this->config['kasimi.loginrequired.enabled'])
 		{
 			$page = $this->user->page['page'];
 
 			// Remove query string
-			if (strlen($this->user->page['query_string']))
+			if (utf8_strlen($this->user->page['query_string']))
 			{
-				$page = substr($page, 0, -(strlen($this->user->page['query_string']) + 1));
+				$page = utf8_substr($page, 0, -(utf8_strlen($this->user->page['query_string']) + 1));
 			}
 
 			// If the user is not browsing any of the whitelisted pages, we redirect to login page
@@ -103,7 +103,7 @@ class listener implements EventSubscriberInterface
 
 		foreach (explode("\n", $this->config['kasimi.loginrequired.exceptions']) as $exception)
 		{
-			if (strlen($exception) && $page === $exception)
+			if (utf8_strlen($exception) && $page === $exception)
 			{
 				return true;
 			}
