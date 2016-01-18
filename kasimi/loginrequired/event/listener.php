@@ -20,9 +20,6 @@ class listener implements EventSubscriberInterface
 	/* @var \phpbb\config\config */
 	protected $config;
 
-	/* @var \phpbb\request\request_interface */
-	protected $request;
-
 	/* @var string */
 	protected $php_ext;
 
@@ -34,19 +31,16 @@ class listener implements EventSubscriberInterface
 	 *
 	 * @param \phpbb\user							$user
 	 * @param \phpbb\config\config					$config
-	 * @param \phpbb\request\request_interface		$request
 	 * @param string								$php_ext
 	 */
 	public function __construct(
 		\phpbb\user $user,
 		\phpbb\config\config $config,
-		\phpbb\request\request_interface $request,
 		$php_ext
 	)
 	{
 		$this->user		= $user;
 		$this->config	= $config;
-		$this->request	= $request;
 		$this->php_ext	= $php_ext;
 	}
 
