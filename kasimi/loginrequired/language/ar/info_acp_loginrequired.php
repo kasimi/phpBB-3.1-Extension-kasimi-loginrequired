@@ -6,8 +6,8 @@
  * @copyright (c) 2015 kasimi
  * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
  *
- 
-* Translated By : Bassel Taha Alhitary - www.alhitary.net
+ * Translated By : Bassel Taha Alhitary - www.alhitary.net
+ *
  */
 
 if (!defined('IN_PHPBB'))
