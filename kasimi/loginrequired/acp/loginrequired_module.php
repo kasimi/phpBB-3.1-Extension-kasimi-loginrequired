@@ -31,11 +31,9 @@ class loginrequired_module
 				trigger_error($user->lang('FORM_INVALID') . adm_back_link($this->u_action));
 			}
 
-			$loginrequired_enabled = $request->variable('loginrequired_enabled', 0);
-			$config->set('kasimi.loginrequired.enabled', $loginrequired_enabled);
-
-			$loginrequired_exceptions = $request->variable('loginrequired_exceptions', '', true);
-			$config->set('kasimi.loginrequired.exceptions', $loginrequired_exceptions);
+			$config->set('kasimi.loginrequired.enabled', $request->variable('loginrequired_enabled', 0));
+			$config->set('kasimi.loginrequired.regex', $request->variable('loginrequired_regex', 0));
+			$config->set('kasimi.loginrequired.exceptions', $request->variable('loginrequired_exceptions', '', true));
 
 			global $phpbb_log;
 			$user_id = (empty($user->data)) ? ANONYMOUS : $user->data['user_id'];
@@ -45,9 +43,10 @@ class loginrequired_module
 		}
 
 		$template->assign_vars(array(
-			'LOGINREQUIRED_VERSION'		=> isset($config['kasimi.loginrequired.version']) ? $config['kasimi.loginrequired.version'] : '',
-			'LOGINREQUIRED_ENABLED'		=> isset($config['kasimi.loginrequired.enabled']) ? $config['kasimi.loginrequired.enabled'] : '',
-			'LOGINREQUIRED_EXCEPTIONS'	=> isset($config['kasimi.loginrequired.exceptions']) ? $config['kasimi.loginrequired.exceptions'] : '',
+			'LOGINREQUIRED_VERSION'		=> $config['kasimi.loginrequired.version'],
+			'LOGINREQUIRED_ENABLED'		=> $config['kasimi.loginrequired.enabled'],
+			'LOGINREQUIRED_REGEX'		=> $config['kasimi.loginrequired.regex'],
+			'LOGINREQUIRED_EXCEPTIONS'	=> $config['kasimi.loginrequired.exceptions'],
 			'U_ACTION'					=> $this->u_action,
 		));
 	}

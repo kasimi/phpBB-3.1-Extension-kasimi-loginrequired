@@ -29,19 +29,19 @@ class listener implements EventSubscriberInterface
 	/**
  	 * Constructor
 	 *
-	 * @param \phpbb\user							$user
-	 * @param \phpbb\config\config					$config
-	 * @param string								$php_ext
+	 * @param \phpbb\user			$user
+	 * @param \phpbb\config\config	$config
+	 * @param string				$php_ext
 	 */
 	public function __construct(
-		\phpbb\user $user,
-		\phpbb\config\config $config,
-		$php_ext
+		\phpbb\user					$user,
+		\phpbb\config\config		$config,
+									$php_ext
 	)
 	{
-		$this->user		= $user;
-		$this->config	= $config;
-		$this->php_ext	= $php_ext;
+		$this->user					= $user;
+		$this->config				= $config;
+		$this->php_ext				= $php_ext;
 	}
 
 	/**
@@ -59,14 +59,15 @@ class listener implements EventSubscriberInterface
 	 */
 	public function login_required($event)
 	{
-		if ($this->is_first_user_setup && $this->user->data['user_id'] == ANONYMOUS && $this->config['kasimi.loginrequired.enabled'])
+		if ($this->user->data['user_id'] == ANONYMOUS && $this->is_first_user_setup && $this->config['kasimi.loginrequired.enabled'])
 		{
 			$page = $this->user->page['page'];
 
 			// Remove query string
-			if (utf8_strlen($this->user->page['query_string']))
+			$query_string_len = utf8_strlen($this->user->page['query_string']);
+			if ($query_string_len)
 			{
-				$page = utf8_substr($page, 0, -(utf8_strlen($this->user->page['query_string']) + 1));
+				$page = utf8_substr($page, 0, -($query_string_len + 1));
 			}
 
 			// If the user is not browsing any of the whitelisted pages, we redirect to login page
@@ -86,7 +87,10 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	 *	Returns true if $page is whilelisted
+	 * Returns true if $page is whilelisted, false otherwise
+	 *
+	 * @param string $page
+	 * @return bool
 	 */
 	protected function is_exception($page)
 	{
@@ -95,11 +99,30 @@ class listener implements EventSubscriberInterface
 			return true;
 		}
 
-		foreach (explode("\n", $this->config['kasimi.loginrequired.exceptions']) as $exception)
+		$exceptions = explode("\n", $this->config['kasimi.loginrequired.exceptions']);
+
+		foreach ($exceptions as $exception)
 		{
-			if (utf8_strlen($exception) && $page === $exception)
+			$exception = trim($exception);
+
+			if (!utf8_strlen($exception))
 			{
-				return true;
+				continue;
+			}
+
+			if ($this->config['kasimi.loginrequired.regex'])
+			{
+				if (preg_match('#' . $exception . '#ui', $page))
+				{
+					return true;
+				}
+			}
+			else
+			{
+				if ($page === $exception)
+				{
+					return true;
+				}
 			}
 		}
 

@@ -13,6 +13,13 @@
 			</dd>
 		</dl>
 		<dl>
+			<dt><label for="loginrequired_regex">{L_LOGINREQUIRED_REGEX}{L_COLON}</label></dt>
+			<dd>
+				<label><input type="radio" class="radio" name="loginrequired_regex" value="1" id="loginrequired_regex"<!-- IF LOGINREQUIRED_REGEX --> checked="checked"<!-- ENDIF -->/> {L_YES}</label>
+				<label><input type="radio" class="radio" name="loginrequired_regex" value="0"<!-- IF not LOGINREQUIRED_REGEX --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+		<dl>
 			<dt><label for="loginrequired_exceptions">{L_LOGINREQUIRED_EXCEPTIONS}{L_COLON}</label><br /><span>{L_LOGINREQUIRED_EXCEPTIONS_EXP}</span></dt>
 			<dd><textarea id="loginrequired_exceptions" name="loginrequired_exceptions" rows="20" cols="20" />{LOGINREQUIRED_EXCEPTIONS}</textarea></dd>
 		</dl>
