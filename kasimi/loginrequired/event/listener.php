@@ -10,14 +10,16 @@
 
 namespace kasimi\loginrequired\event;
 
+use phpbb\config\config;
+use phpbb\user;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class listener implements EventSubscriberInterface
 {
-	/* @var \phpbb\user */
+	/* @var user */
 	protected $user;
 
-	/* @var \phpbb\config\config */
+	/* @var config */
 	protected $config;
 
 	/* @var string */
@@ -29,19 +31,19 @@ class listener implements EventSubscriberInterface
 	/**
  	 * Constructor
 	 *
-	 * @param \phpbb\user			$user
-	 * @param \phpbb\config\config	$config
-	 * @param string				$php_ext
+	 * @param user		$user
+	 * @param config	$config
+	 * @param string	$php_ext
 	 */
 	public function __construct(
-		\phpbb\user					$user,
-		\phpbb\config\config		$config,
-									$php_ext
+		user $user,
+		config $config,
+		$php_ext
 	)
 	{
-		$this->user					= $user;
-		$this->config				= $config;
-		$this->php_ext				= $php_ext;
+		$this->user		= $user;
+		$this->config	= $config;
+		$this->php_ext	= $php_ext;
 	}
 
 	/**
@@ -57,7 +59,7 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Event: core.user_setup
 	 */
-	public function login_required($event)
+	public function login_required()
 	{
 		if ($this->user->data['user_id'] == ANONYMOUS && $this->is_first_user_setup && $this->config['kasimi.loginrequired.enabled'])
 		{
