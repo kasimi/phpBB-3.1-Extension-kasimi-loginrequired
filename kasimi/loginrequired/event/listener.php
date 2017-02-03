@@ -52,7 +52,7 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.user_setup' => 'login_required',
+			'core.user_setup' => array('login_required', 1000),
 		);
 	}
 
