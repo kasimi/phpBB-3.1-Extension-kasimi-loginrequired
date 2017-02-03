@@ -1,32 +1,32 @@
 {
-    "name": "kasimi/loginrequired",
-    "type": "phpbb-extension",
-    "description": "Forcefully redirects any non-logged in user to the login page with the possibility to add exceptions to a whitelist.",
-    "homepage": "https://github.com/kasimi",
-    "version": "1.0.4",
-    "time": "2015-05-19",
-    "license": "GPL-2.0",
-    "authors": [
-        {
-            "name": "kasimi",
-            "email": "",
-            "homepage": "https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=1330603",
-            "role": "Lead Developer"
-        }
-    ],
-    "require": {
-        "php": ">=5.3.3",
-        "phpbb/phpbb": ">=3.1.0@dev"
-    },
-    "extra": {
-        "display-name": "Login Required",
-        "soft-require": {
-            "phpbb/phpbb": ">=3.1.0@dev"
-        },
-        "version-check": {
-            "host": "www.phpbb.com",
-            "directory": "/customise/db/extension/login_required",
-            "filename": "version_check"
-        }
-    }
+	"name": "kasimi/loginrequired",
+	"type": "phpbb-extension",
+	"description": "Forcefully redirects any non-logged in user to the login page with the possibility to add exceptions to a whitelist.",
+	"homepage": "https://github.com/kasimi",
+	"version": "1.1.0",
+	"time": "2017-02-03",
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "kasimi",
+			"homepage": "https://kasimi.net",
+			"email": "mail@kasimi.net",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.3.3",
+		"phpbb/phpbb": ">=3.1.0-a1,<3.3.0@dev"
+	},
+	"extra": {
+		"display-name": "Login Required",
+		"soft-require": {
+			"phpbb/phpbb": ">=3.1.0-a1,<3.3.0@dev"
+		},
+		"version-check": {
+			"host": "www.phpbb.com",
+			"directory": "/customise/db/extension/login_required",
+			"filename": "version_check"
+		}
+	}
 }
