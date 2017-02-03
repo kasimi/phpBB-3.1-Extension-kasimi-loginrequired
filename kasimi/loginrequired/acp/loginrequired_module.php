@@ -36,14 +36,11 @@ class loginrequired_module
 			$config->set('kasimi.loginrequired.exceptions', $request->variable('loginrequired_exceptions', '', true));
 
 			global $phpbb_log;
-			$user_id = (empty($user->data)) ? ANONYMOUS : $user->data['user_id'];
-			$user_ip = (empty($user->ip)) ? '' : $user->ip;
-			$phpbb_log->add('admin', $user_id, $user_ip, 'LOGINREQUIRED_CONFIG_UPDATED');
+			$phpbb_log->add('admin', $user->data['user_id'], $user->ip, 'LOGINREQUIRED_CONFIG_UPDATED');
 			trigger_error($user->lang('CONFIG_UPDATED') . adm_back_link($this->u_action));
 		}
 
 		$template->assign_vars(array(
-			'LOGINREQUIRED_VERSION'		=> $config['kasimi.loginrequired.version'],
 			'LOGINREQUIRED_ENABLED'		=> $config['kasimi.loginrequired.enabled'],
 			'LOGINREQUIRED_REGEX'		=> $config['kasimi.loginrequired.regex'],
 			'LOGINREQUIRED_EXCEPTIONS'	=> $config['kasimi.loginrequired.exceptions'],
