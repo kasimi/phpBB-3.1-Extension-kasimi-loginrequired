@@ -81,7 +81,10 @@ class listener implements EventSubscriberInterface
 
 				// We need to force login_box() to re-initialize the $user object
 				// because an extension might have added its language keys already.
-				$this->user->lang = array();
+				if (phpbb_version_compare(PHPBB_VERSION, '3.2.0', '<'))
+				{
+					$this->user->lang = array();
+				}
 
 				login_box();
 			}
