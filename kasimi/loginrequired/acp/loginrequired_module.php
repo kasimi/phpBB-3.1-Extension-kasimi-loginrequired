@@ -18,7 +18,7 @@ class loginrequired_module
 	{
 		global $config, $request, $template, $user;
 
-		$user->add_lang('acp/common');
+		$user->add_lang_ext('kasimi/loginrequired', 'acp_configuration');
 		$this->tpl_name = 'acp_loginrequired';
 		$this->page_title = $user->lang('LOGINREQUIRED_TITLE');
 
