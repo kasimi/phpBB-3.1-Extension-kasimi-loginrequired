@@ -21,7 +21,7 @@ class loginrequired_info
 				'settings' => array(
 					'title'	=> 'LOGINREQUIRED_CONFIG',
 					'auth'	=> 'ext_kasimi/loginrequired && acl_a_board',
-					'cat'	=> array('LOGINREQUIRED_TITLE')
+					'cat'	=> array('LOGINREQUIRED_TITLE'),
 				),
 			),
 		);

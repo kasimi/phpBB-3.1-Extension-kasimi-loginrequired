@@ -20,19 +20,19 @@ class v1_0_0 extends \phpbb\db\migration\migration
 			array('config.add', array('kasimi.loginrequired.enabled', 0)),
 			array('config.add', array('kasimi.loginrequired.exceptions', '')),
 
-			// Add ACP module
+			// Add ACP category
 			array('module.add', array(
 				'acp',
 				'ACP_CAT_DOT_MODS',
 				'LOGINREQUIRED_TITLE'
 			)),
 
+			// Add ACP module
 			array('module.add', array(
 				'acp',
 				'LOGINREQUIRED_TITLE',
 				array(
 					'module_basename'	=> '\kasimi\loginrequired\acp\loginrequired_module',
-					'auth'				=> 'ext_kasimi/loginrequired && acl_a_board',
 					'modes'				=> array('settings'),
 				),
 			)),
