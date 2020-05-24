@@ -5,29 +5,29 @@
 <form id="acp_board" method="post" action="{{ U_ACTION }}">
 	<fieldset>
 		<dl>
-			<dt><label for="loginrequired_enabled">{{ lang('LOGINREQUIRED_ENABLED') ~ lang('COLON') }}</label><br /><span>{{ lang('LOGINREQUIRED_ENABLED_EXP') }}</span></dt>
+			<dt><label for="loginrequired_enabled">{{ lang('LOGINREQUIRED_ENABLED') ~ lang('COLON') }}</label><br><span>{{ lang('LOGINREQUIRED_ENABLED_EXP') }}</span></dt>
 			<dd>
-				<label><input type="radio" class="radio" name="loginrequired_enabled" value="1" id="loginrequired_enabled"{{ LOGINREQUIRED_ENABLED ? ' checked="checked"' : '' }}/> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="loginrequired_enabled" value="0"{{ not LOGINREQUIRED_ENABLED ? ' checked="checked"' : '' }} /> {{ lang('NO') }}</label>
+				<label><input type="radio" class="radio" name="loginrequired_enabled" value="1" id="loginrequired_enabled"{{ LOGINREQUIRED_ENABLED ? ' checked="checked"' }}> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="loginrequired_enabled" value="0"{{ not LOGINREQUIRED_ENABLED ? ' checked="checked"' }}> {{ lang('NO') }}</label>
 			</dd>
 		</dl>
 		<dl>
 			<dt><label for="loginrequired_regex">{{ lang('LOGINREQUIRED_REGEX') ~ lang('COLON') }}</label></dt>
 			<dd>
-				<label><input type="radio" class="radio" name="loginrequired_regex" value="1" id="loginrequired_regex"{{ LOGINREQUIRED_REGEX ? ' checked="checked"' : '' }}/> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="loginrequired_regex" value="0"{{ not LOGINREQUIRED_REGEX ? ' checked="checked"' : '' }} /> {{ lang('NO') }}</label>
+				<label><input type="radio" class="radio" name="loginrequired_regex" value="1" id="loginrequired_regex"{{ LOGINREQUIRED_REGEX ? ' checked="checked"' }}> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="loginrequired_regex" value="0"{{ not LOGINREQUIRED_REGEX ? ' checked="checked"' }}> {{ lang('NO') }}</label>
 			</dd>
 		</dl>
 		<dl>
-			<dt><label for="loginrequired_exceptions">{{ lang('LOGINREQUIRED_EXCEPTIONS') ~ lang('COLON') }}</label><br /><span>{{ lang('LOGINREQUIRED_EXCEPTIONS_EXP') }}</span></dt>
-			<dd><textarea id="loginrequired_exceptions" name="loginrequired_exceptions" rows="20" cols="20" />{{ LOGINREQUIRED_EXCEPTIONS }}</textarea></dd>
+			<dt><label for="loginrequired_exceptions">{{ lang('LOGINREQUIRED_EXCEPTIONS') ~ lang('COLON') }}</label><br><span>{{ lang('LOGINREQUIRED_EXCEPTIONS_EXP') }}</span></dt>
+			<dd><textarea id="loginrequired_exceptions" name="loginrequired_exceptions" rows="20" cols="20">{{ LOGINREQUIRED_EXCEPTIONS }}</textarea></dd>
 		</dl>
 	</fieldset>
 	<fieldset>
 		<legend>{{ lang('ACP_SUBMIT_CHANGES') }}</legend>
 		<p class="submit-buttons">
-			<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}" />&nbsp;
-			<input class="button2" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}" />
+			<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}">&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}">
 		</p>
 		{{ S_FORM_TOKEN }}
 	</fieldset>

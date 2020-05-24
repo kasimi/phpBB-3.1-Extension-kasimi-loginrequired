@@ -21,5 +21,5 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'LOGINREQUIRED_TITLE'				=> 'Login Required',
 	'LOGINREQUIRED_CONFIG'				=> 'Configuration',
-	'LOGINREQUIRED_CONFIG_UPDATED'		=> '<strong>Login Required Extension</strong><br />» Configuration updated',
+	'LOGINREQUIRED_CONFIG_UPDATED'		=> '<strong>Login Required Extension</strong><br>» Configuration updated',
 ));
