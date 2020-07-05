@@ -7,15 +7,15 @@
 		<dl>
 			<dt><label for="loginrequired_enabled">{{ lang('LOGINREQUIRED_ENABLED') ~ lang('COLON') }}</label><br><span>{{ lang('LOGINREQUIRED_ENABLED_EXP') }}</span></dt>
 			<dd>
-				<label><input type="radio" class="radio" name="loginrequired_enabled" value="1" id="loginrequired_enabled"{{ LOGINREQUIRED_ENABLED ? ' checked="checked"' }}> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="loginrequired_enabled" value="0"{{ not LOGINREQUIRED_ENABLED ? ' checked="checked"' }}> {{ lang('NO') }}</label>
+				<label><input type="radio" class="radio" name="loginrequired_enabled" value="1" id="loginrequired_enabled"{{ LOGINREQUIRED_ENABLED ? ' checked' }}> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="loginrequired_enabled" value="0"{{ not LOGINREQUIRED_ENABLED ? ' checked' }}> {{ lang('NO') }}</label>
 			</dd>
 		</dl>
 		<dl>
 			<dt><label for="loginrequired_regex">{{ lang('LOGINREQUIRED_REGEX') ~ lang('COLON') }}</label></dt>
 			<dd>
-				<label><input type="radio" class="radio" name="loginrequired_regex" value="1" id="loginrequired_regex"{{ LOGINREQUIRED_REGEX ? ' checked="checked"' }}> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="loginrequired_regex" value="0"{{ not LOGINREQUIRED_REGEX ? ' checked="checked"' }}> {{ lang('NO') }}</label>
+				<label><input type="radio" class="radio" name="loginrequired_regex" value="1" id="loginrequired_regex"{{ LOGINREQUIRED_REGEX ? ' checked' }}> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="loginrequired_regex" value="0"{{ not LOGINREQUIRED_REGEX ? ' checked' }}> {{ lang('NO') }}</label>
 			</dd>
 		</dl>
 		<dl>
