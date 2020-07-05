@@ -56,7 +56,7 @@ class listener implements EventSubscriberInterface
 	{
 		return [
 			'core.user_setup'	=> ['user_setup', 1000],
-			'core.page_footer'	=> 'page_footer',
+			'core.page_footer'	=> ['page_footer', -1000],
 		];
 	}
 
