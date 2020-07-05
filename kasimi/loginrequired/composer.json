@@ -3,7 +3,7 @@
 	"type": "phpbb-extension",
 	"description": "Forcefully redirects any non-logged in user to the login page with the possibility to add exceptions to a whitelist.",
 	"homepage": "https://kasimi.net",
-	"version": "1.1.1",
+	"version": "1.2.0",
 	"time": "2020-07-05",
 	"license": "GPL-2.0-only",
 	"authors": [
