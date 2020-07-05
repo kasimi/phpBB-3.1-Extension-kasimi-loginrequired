@@ -16,11 +16,12 @@ class loginrequired_module
 
 	function main($id, $mode)
 	{
-		global $config, $request, $template, $user;
+		global $phpbb_container, $config, $request, $template, $user;
+		$language  = $phpbb_container->get('language');
 
-		$user->add_lang_ext('kasimi/loginrequired', 'acp_configuration');
+		$language->add_lang('acp_configuration', 'kasimi/loginrequired');
 		$this->tpl_name = 'acp_loginrequired';
-		$this->page_title = $user->lang('LOGINREQUIRED_TITLE');
+		$this->page_title = $language->lang('LOGINREQUIRED_TITLE');
 
 		add_form_key('acp_loginrequired');
 
@@ -28,7 +29,7 @@ class loginrequired_module
 		{
 			if (!check_form_key('acp_loginrequired'))
 			{
-				trigger_error($user->lang('FORM_INVALID') . adm_back_link($this->u_action));
+				trigger_error($language->lang('FORM_INVALID') . adm_back_link($this->u_action));
 			}
 
 			$config->set('kasimi.loginrequired.enabled', $request->variable('loginrequired_enabled', 0));
@@ -37,7 +38,7 @@ class loginrequired_module
 
 			global $phpbb_log;
 			$phpbb_log->add('admin', $user->data['user_id'], $user->ip, 'LOGINREQUIRED_CONFIG_UPDATED');
-			trigger_error($user->lang('CONFIG_UPDATED') . adm_back_link($this->u_action));
+			trigger_error($language->lang('CONFIG_UPDATED') . adm_back_link($this->u_action));
 		}
 
 		$template->assign_vars([
