@@ -67,14 +67,7 @@ class listener implements EventSubscriberInterface
 	{
 		if (!$this->user->data['is_registered'] && $this->is_first_user_setup && $this->config['kasimi.loginrequired.enabled'])
 		{
-			$page = $this->user->page['page'];
-
-			// Remove query string
-			$query_string_len = utf8_strlen($this->user->page['query_string']);
-			if ($query_string_len)
-			{
-				$page = utf8_substr($page, 0, -($query_string_len + 1));
-			}
+			$page = $this->get_current_page();
 
 			// If the user is not browsing any of the whitelisted pages, we redirect to login page
 			if (!$this->is_exception($page))
@@ -103,6 +96,20 @@ class listener implements EventSubscriberInterface
 		{
 			$event['run_cron'] = false;
 		}
+	}
+
+	protected function get_current_page()
+	{
+		$page = $this->user->page['page'];
+
+		// Remove query string
+		$query_string_len = utf8_strlen($this->user->page['query_string']);
+		if ($query_string_len)
+		{
+			$page = utf8_substr($page, 0, -($query_string_len + 1));
+		}
+
+		return $page;
 	}
 
 	/**
