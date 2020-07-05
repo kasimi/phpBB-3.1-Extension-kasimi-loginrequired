@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  *
@@ -14,9 +14,9 @@ class loginrequired_module
 {
 	public $u_action;
 
-	function main($id, $mode)
+	function main(string $id, string $mode): void
 	{
-		global $phpbb_container, $config, $request, $template, $user;
+		global $phpbb_container, $phpbb_log, $config, $request, $template, $user;
 		$language  = $phpbb_container->get('language');
 
 		$language->add_lang('acp_configuration', 'kasimi/loginrequired');
@@ -29,14 +29,13 @@ class loginrequired_module
 		{
 			if (!check_form_key('acp_loginrequired'))
 			{
-				trigger_error($language->lang('FORM_INVALID') . adm_back_link($this->u_action));
+				trigger_error($language->lang('FORM_INVALID') . adm_back_link($this->u_action), E_USER_WARNING);
 			}
 
 			$config->set('kasimi.loginrequired.enabled', $request->variable('loginrequired_enabled', 0));
 			$config->set('kasimi.loginrequired.regex', $request->variable('loginrequired_regex', 0));
 			$config->set('kasimi.loginrequired.exceptions', $request->variable('loginrequired_exceptions', '', true));
 
-			global $phpbb_log;
 			$phpbb_log->add('admin', $user->data['user_id'], $user->ip, 'LOGINREQUIRED_CONFIG_UPDATED');
 			trigger_error($language->lang('CONFIG_UPDATED') . adm_back_link($this->u_action));
 		}

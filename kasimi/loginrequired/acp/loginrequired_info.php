@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  *
@@ -12,7 +12,7 @@ namespace kasimi\loginrequired\acp;
 
 class loginrequired_info
 {
-	function module()
+	function module(): array
 	{
 		return [
 			'filename'	=> '\kasimi\loginrequired\acp\loginrequired_module',

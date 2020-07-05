@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  *
@@ -11,6 +11,7 @@
 namespace kasimi\loginrequired\event;
 
 use phpbb\config\config;
+use phpbb\event\data;
 use phpbb\user;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -31,17 +32,10 @@ class listener implements EventSubscriberInterface
 	/** @var bool */
 	protected $is_login_required = false;
 
-	/**
- 	 * Constructor
-	 *
-	 * @param user		$user
-	 * @param config	$config
-	 * @param string	$php_ext
-	 */
 	public function __construct(
 		user $user,
 		config $config,
-		$php_ext
+		string $php_ext
 	)
 	{
 		$this->user		= $user;
@@ -49,10 +43,7 @@ class listener implements EventSubscriberInterface
 		$this->php_ext	= $php_ext;
 	}
 
-	/**
-	 * Register hooks
-	 */
-	static public function getSubscribedEvents()
+	public static function getSubscribedEvents(): array
 	{
 		return [
 			'core.user_setup'	=> ['user_setup', 1000],
@@ -60,10 +51,7 @@ class listener implements EventSubscriberInterface
 		];
 	}
 
-	/**
-	 * Event: core.user_setup
-	 */
-	public function user_setup()
+	public function user_setup(): void
 	{
 		if (!$this->user->data['is_registered'] && $this->is_first_user_setup && $this->config['kasimi.loginrequired.enabled'])
 		{
@@ -78,19 +66,12 @@ class listener implements EventSubscriberInterface
 				// let's make sure we don't handle the next call.
 				$this->is_first_user_setup = false;
 
-				// We need to force login_box() to re-initialize the $user object
-				// because an extension might have added its language keys already.
-				if (phpbb_version_compare(PHPBB_VERSION, '3.2.0', '<'))
-				{
-					$this->user->lang = [];
-				}
-
 				login_box();
 			}
 		}
 	}
 
-	public function page_footer($event)
+	public function page_footer(data $event): void
 	{
 		if ($this->is_login_required)
 		{
@@ -98,7 +79,7 @@ class listener implements EventSubscriberInterface
 		}
 	}
 
-	protected function get_current_page()
+	protected function get_current_page(): string
 	{
 		$page = $this->user->page['page'];
 
@@ -112,13 +93,7 @@ class listener implements EventSubscriberInterface
 		return $page;
 	}
 
-	/**
-	 * Returns true if $page is whilelisted, false otherwise
-	 *
-	 * @param string $page
-	 * @return bool
-	 */
-	protected function is_exception($page)
+	protected function is_exception(string $page): bool
 	{
 		if ($page === 'ucp.' . $this->php_ext)
 		{

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  *
@@ -12,7 +12,7 @@ namespace kasimi\loginrequired\migrations;
 
 class v1_0_0 extends \phpbb\db\migration\migration
 {
-	public function update_data()
+	public function update_data(): array
 	{
 		return [
 			// Add config entries

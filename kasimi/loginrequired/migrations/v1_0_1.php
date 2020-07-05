@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  *
@@ -12,12 +12,12 @@ namespace kasimi\loginrequired\migrations;
 
 class v1_0_1 extends \phpbb\db\migration\migration
 {
-	static public function depends_on()
+	static public function depends_on(): array
 	{
 		return ['\kasimi\loginrequired\migrations\v1_0_0'];
 	}
 
-	public function update_data()
+	public function update_data(): array
 	{
 		return [
 			['config.update', ['kasimi.loginrequired.version', '1.0.1']],
