@@ -25,8 +25,11 @@ class listener implements EventSubscriberInterface
 	/* @var string */
 	protected $php_ext;
 
-	/* @var boolean */
+	/* @var bool */
 	protected $is_first_user_setup = true;
+
+	/** @var bool */
+	protected $is_login_required = false;
 
 	/**
  	 * Constructor
@@ -52,14 +55,15 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.user_setup' => array('login_required', 1000),
+			'core.user_setup'	=> array('user_setup', 1000),
+			'core.page_footer'	=> 'page_footer',
 		);
 	}
 
 	/**
 	 * Event: core.user_setup
 	 */
-	public function login_required()
+	public function user_setup()
 	{
 		if (!$this->user->data['is_registered'] && $this->is_first_user_setup && $this->config['kasimi.loginrequired.enabled'])
 		{
@@ -75,6 +79,8 @@ class listener implements EventSubscriberInterface
 			// If the user is not browsing any of the whitelisted pages, we redirect to login page
 			if (!$this->is_exception($page))
 			{
+				$this->is_login_required = true;
+
 				// login_box() calls $user->setup() and therefore this method again,
 				// let's make sure we don't handle the next call.
 				$this->is_first_user_setup = false;
@@ -88,6 +94,14 @@ class listener implements EventSubscriberInterface
 
 				login_box();
 			}
+		}
+	}
+
+	public function page_footer($event)
+	{
+		if ($this->is_login_required)
+		{
+			$event['run_cron'] = false;
 		}
 	}
 
