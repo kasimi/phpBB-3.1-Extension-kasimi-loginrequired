@@ -61,7 +61,7 @@ class listener implements EventSubscriberInterface
 	 */
 	public function login_required()
 	{
-		if ($this->user->data['user_id'] == ANONYMOUS && $this->is_first_user_setup && $this->config['kasimi.loginrequired.enabled'])
+		if (!$this->user->data['is_registered'] && $this->is_first_user_setup && $this->config['kasimi.loginrequired.enabled'])
 		{
 			$page = $this->user->page['page'];
 
