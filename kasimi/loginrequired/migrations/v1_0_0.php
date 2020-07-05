@@ -14,28 +14,28 @@ class v1_0_0 extends \phpbb\db\migration\migration
 {
 	public function update_data()
 	{
-		return array(
+		return [
 			// Add config entries
-			array('config.add', array('kasimi.loginrequired.version', '1.0.0')),
-			array('config.add', array('kasimi.loginrequired.enabled', 0)),
-			array('config.add', array('kasimi.loginrequired.exceptions', '')),
+			['config.add', ['kasimi.loginrequired.version', '1.0.0']],
+			['config.add', ['kasimi.loginrequired.enabled', 0]],
+			['config.add', ['kasimi.loginrequired.exceptions', '']],
 
 			// Add ACP category
-			array('module.add', array(
+			['module.add', [
 				'acp',
 				'ACP_CAT_DOT_MODS',
 				'LOGINREQUIRED_TITLE'
-			)),
+			]],
 
 			// Add ACP module
-			array('module.add', array(
+			['module.add', [
 				'acp',
 				'LOGINREQUIRED_TITLE',
-				array(
+				[
 					'module_basename'	=> '\kasimi\loginrequired\acp\loginrequired_module',
-					'modes'				=> array('settings'),
-				),
-			)),
-		);
+					'modes'				=> ['settings'],
+				],
+			]],
+		];
 	}
 }

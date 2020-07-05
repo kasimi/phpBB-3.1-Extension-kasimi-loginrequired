@@ -14,16 +14,16 @@ class loginrequired_info
 {
 	function module()
 	{
-		return array(
+		return [
 			'filename'	=> '\kasimi\loginrequired\acp\loginrequired_module',
 			'title'		=> 'LOGINREQUIRED_TITLE',
-			'modes'		=> array(
-				'settings' => array(
+			'modes'		=> [
+				'settings' => [
 					'title'	=> 'LOGINREQUIRED_CONFIG',
 					'auth'	=> 'ext_kasimi/loginrequired && acl_a_board',
-					'cat'	=> array('LOGINREQUIRED_TITLE'),
-				),
-			),
-		);
+					'cat'	=> ['LOGINREQUIRED_TITLE'],
+				],
+			],
+		];
 	}
 }

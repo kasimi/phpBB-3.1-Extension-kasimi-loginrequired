@@ -40,11 +40,11 @@ class loginrequired_module
 			trigger_error($user->lang('CONFIG_UPDATED') . adm_back_link($this->u_action));
 		}
 
-		$template->assign_vars(array(
+		$template->assign_vars([
 			'LOGINREQUIRED_ENABLED'		=> $config['kasimi.loginrequired.enabled'],
 			'LOGINREQUIRED_REGEX'		=> $config['kasimi.loginrequired.regex'],
 			'LOGINREQUIRED_EXCEPTIONS'	=> $config['kasimi.loginrequired.exceptions'],
 			'U_ACTION'					=> $this->u_action,
-		));
+		]);
 	}
 }

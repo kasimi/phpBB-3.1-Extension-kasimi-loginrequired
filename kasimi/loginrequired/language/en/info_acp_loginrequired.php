@@ -15,11 +15,11 @@ if (!defined('IN_PHPBB'))
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+	$lang = [];
 }
 
-$lang = array_merge($lang, array(
+$lang = array_merge($lang, [
 	'LOGINREQUIRED_TITLE'				=> 'Login Required',
 	'LOGINREQUIRED_CONFIG'				=> 'Configuration',
 	'LOGINREQUIRED_CONFIG_UPDATED'		=> '<strong>Login Required Extension</strong><br>» Configuration updated',
-));
+]);

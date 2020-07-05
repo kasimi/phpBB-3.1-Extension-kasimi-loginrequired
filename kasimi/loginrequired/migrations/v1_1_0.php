@@ -14,13 +14,13 @@ class v1_1_0 extends \phpbb\db\migration\migration
 {
 	static public function depends_on()
 	{
-		return array('\kasimi\loginrequired\migrations\v1_0_4');
+		return ['\kasimi\loginrequired\migrations\v1_0_4'];
 	}
 
 	public function update_data()
 	{
-		return array(
-			array('config.remove', array('kasimi.loginrequired.version')),
-		);
+		return [
+			['config.remove', ['kasimi.loginrequired.version']],
+		];
 	}
 }

@@ -54,10 +54,10 @@ class listener implements EventSubscriberInterface
 	 */
 	static public function getSubscribedEvents()
 	{
-		return array(
-			'core.user_setup'	=> array('user_setup', 1000),
+		return [
+			'core.user_setup'	=> ['user_setup', 1000],
 			'core.page_footer'	=> 'page_footer',
-		);
+		];
 	}
 
 	/**
@@ -89,7 +89,7 @@ class listener implements EventSubscriberInterface
 				// because an extension might have added its language keys already.
 				if (phpbb_version_compare(PHPBB_VERSION, '3.2.0', '<'))
 				{
-					$this->user->lang = array();
+					$this->user->lang = [];
 				}
 
 				login_box();
