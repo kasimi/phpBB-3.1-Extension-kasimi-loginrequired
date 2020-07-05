@@ -26,9 +26,6 @@ class listener implements EventSubscriberInterface
 	/* @var string */
 	protected $php_ext;
 
-	/* @var bool */
-	protected $is_first_user_setup = true;
-
 	/** @var bool */
 	protected $is_login_required = false;
 
@@ -53,7 +50,7 @@ class listener implements EventSubscriberInterface
 
 	public function user_setup(): void
 	{
-		if (!$this->user->data['is_registered'] && $this->is_first_user_setup && $this->config['kasimi.loginrequired.enabled'])
+		if (!$this->user->data['is_registered'] && !$this->is_login_required && $this->config['kasimi.loginrequired.enabled'])
 		{
 			$page = $this->get_current_page();
 
@@ -64,7 +61,7 @@ class listener implements EventSubscriberInterface
 
 				// login_box() calls $user->setup() and therefore this method again,
 				// let's make sure we don't handle the next call.
-				$this->is_first_user_setup = false;
+				$this->is_login_required = true;
 
 				login_box();
 			}
