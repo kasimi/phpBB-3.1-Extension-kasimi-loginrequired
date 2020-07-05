@@ -2,10 +2,10 @@
 	"name": "kasimi/loginrequired",
 	"type": "phpbb-extension",
 	"description": "Forcefully redirects any non-logged in user to the login page with the possibility to add exceptions to a whitelist.",
-	"homepage": "https://github.com/kasimi",
-	"version": "1.1.0",
-	"time": "2017-02-03",
-	"license": "GPL-2.0",
+	"homepage": "https://kasimi.net",
+	"version": "1.1.1",
+	"time": "2020-07-05",
+	"license": "GPL-2.0-only",
 	"authors": [
 		{
 			"name": "kasimi",
@@ -16,12 +16,12 @@
 	],
 	"require": {
 		"php": ">=5.3.3",
-		"phpbb/phpbb": ">=3.1.0-a1,<3.3.0@dev"
+		"phpbb/phpbb": ">=3.1.0"
 	},
 	"extra": {
 		"display-name": "Login Required",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.1.0-a1,<3.3.0@dev"
+			"phpbb/phpbb": ">=3.1.0"
 		},
 		"version-check": {
 			"host": "www.phpbb.com",
