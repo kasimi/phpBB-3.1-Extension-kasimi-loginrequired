@@ -57,8 +57,6 @@ class listener implements EventSubscriberInterface
 			// If the user is not browsing any of the whitelisted pages, we redirect to login page
 			if (!$this->is_exception($page))
 			{
-				$this->is_login_required = true;
-
 				// login_box() calls $user->setup() and therefore this method again,
 				// let's make sure we don't handle the next call.
 				$this->is_login_required = true;
